@@ -6,7 +6,7 @@
 /*   By: yboutsli <yboutsli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 19:34:03 by yboutsli          #+#    #+#             */
-/*   Updated: 2024/02/21 21:28:02 by yboutsli         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:48:36 by yboutsli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	pixel(int x, int y, t_fractal *fract)
 	i = -1;
 	while (++i < fract->iteration)
 	{
-		if (!ft_strncmp(fract->name, "tricorn", 7))
+		if (!ft_strcmp(fract->name, "tricorn"))
 			z = cmplx_sum(cmplx_power2(cmplx_conj(z)), c);
 		else
 			z = cmplx_sum(cmplx_power2(z), c);
@@ -102,4 +102,12 @@ int	mouse(int button, int x, int y, t_fractal *fract)
 		return (0);
 	fract_drawing(fract);
 	return (0);
+}
+
+void	main_utils(t_fractal *fract)
+{
+	fract_init(fract);
+	fract_drawing(fract);
+	img_utils(fract);
+	mlx_loop(fract->connection);
 }

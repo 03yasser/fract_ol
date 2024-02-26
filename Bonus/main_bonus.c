@@ -6,20 +6,20 @@
 /*   By: yboutsli <yboutsli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 17:12:49 by yboutsli          #+#    #+#             */
-/*   Updated: 2024/02/21 21:43:27 by yboutsli         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:49:45 by yboutsli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol_bonus.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
 
 	i = 0;
-	if (n == 0)
+	if (!*s1 || !*s2)
 		return (0);
-	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n - 1)
+	while (s1[i] == s2[i] && s1[i] && s2[i])
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
@@ -55,9 +55,9 @@ int	fract_init(t_fractal *fract)
 	fract->img.pxl_p = mlx_get_data_addr(fract->img.img_p,
 			&fract->img.bits_per_pixel, &fract->img.line_len,
 			&fract->img.endian);
-	fract->red = 20;
-	fract->green = 10;
-	fract->blue = 30;
+	fract->red = 3;
+	fract->green = 7;
+	fract->blue = 10;
 	return (1);
 }
 
@@ -81,27 +81,27 @@ int	main(int argc, char **argv)
 {
 	t_fractal	fract;
 
-	if (argc == 1 || (argc == 2 && (ft_strncmp(argv[1], "mandelbrot", 10)
-				&& ft_strncmp(argv[1], "tricorn", 7)))
-		|| (argc == 4 && ft_strncmp(argv[1], "julia", 5)))
-	{
-		write(2, ERROR, 70);
-		exit(1);
-	}
 	if (HEIGHT <= 0 || WIDTH <= 0 || WIDTH > 2560 || HEIGHT > 1395)
 	{
 		write(2, ERROR1, 22);
 		exit(1);
 	}
-	fract.name = argv[1];
-	if (!ft_strncmp(fract.name, "julia", 5))
+	if ((argc == 2 && (!ft_strcmp(argv[1], "mandelbrot")
+				|| !ft_strcmp(argv[1], "tricon")))
+		|| (argc == 4 && !ft_strcmp(argv[1], "julia")))
 	{
-		fract.j_r = double_atoi(argv[2]);
-		fract.j_i = double_atoi(argv[3]);
+		fract.name = argv[1];
+		if (!ft_strcmp(fract.name, "julia"))
+		{
+			fract.j_r = double_atoi(argv[2]);
+			fract.j_i = double_atoi(argv[3]);
+		}
+		main_utils(&fract);
 	}
-	fract_init(&fract);
-	fract_drawing(&fract);
-	img_utils(&fract);
-	mlx_loop(fract.connection);
-	exit(1);
+	else
+	{
+		write(2, ERROR, 70);
+		exit(1);
+	}
+	exit(0);
 }

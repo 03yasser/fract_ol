@@ -6,7 +6,7 @@
 /*   By: yboutsli <yboutsli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:50:35 by yboutsli          #+#    #+#             */
-/*   Updated: 2024/02/21 21:43:58 by yboutsli         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:36:54 by yboutsli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 
 void	pixel_utils(t_cmplx *c, t_cmplx *z, t_fractal *fract)
 {
-	if (!ft_strncmp(fract->name, "julia", 5))
+	if (!ft_strcmp(fract->name, "julia"))
 	{
 		c->r = fract->j_r;
 		c->i = fract->j_i;

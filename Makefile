@@ -15,9 +15,9 @@ bonus:$(NAME_BONUS)
 	cc $(CFLAGS) $(B_OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS)
 $(NAME_BONUS):$(B_OBJ)
 Mandatory/%.o: Mandatory/%.c Mandatory/fract_ol.h
-	cc $(CFLAGS) -I. -Imlx -c $< -o $@
+	cc $(CFLAGS) -c $< -o $@
 Bonus/%.o:Bonus/%.c Bonus/fract_ol_bonus.h
-	cc $(CFLAGS) -I. -Imlx -c $< -o $@
+	cc $(CFLAGS) -c $< -o $@
 clean : 
 	rm -rf $(M_OBJ) $(B_OBJ)
 fclean : clean
