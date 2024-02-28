@@ -6,7 +6,7 @@
 /*   By: yboutsli <yboutsli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 17:11:33 by yboutsli          #+#    #+#             */
-/*   Updated: 2024/02/26 20:45:21 by yboutsli         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:55:28 by yboutsli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void		pixel_utils(t_cmplx *c, t_cmplx *z, t_fractal *fract);
 int			close_win(t_fractal *fract);
 double		scale(double x, double new_min, double new_max, double old_max);
 t_cmplx		cmplx_conj(t_cmplx z);
-void		main_utils(t_fractal *fract);
+void		main_utils(char **argv, t_fractal *fract);
+int			valid_coords(char *crd);
 #endif

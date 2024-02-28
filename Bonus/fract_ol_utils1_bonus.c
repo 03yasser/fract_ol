@@ -6,7 +6,7 @@
 /*   By: yboutsli <yboutsli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 19:34:03 by yboutsli          #+#    #+#             */
-/*   Updated: 2024/02/26 20:48:36 by yboutsli         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:50:33 by yboutsli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	key(int keycode, t_fractal *fract)
 		fract->iteration += 10;
 	else if (keycode == 78 && fract->iteration > 10)
 		fract->iteration -= 10;
-	else if (keycode == 125)
-		fract->shift_y -= (fract->zoom);
 	else if (keycode == 126)
+		fract->shift_y -= (fract->zoom);
+	else if (keycode == 125)
 		fract->shift_y += (fract->zoom);
 	else if (keycode == 124)
 		fract->shift_x -= (fract->zoom);
@@ -104,8 +104,13 @@ int	mouse(int button, int x, int y, t_fractal *fract)
 	return (0);
 }
 
-void	main_utils(t_fractal *fract)
+void	main_utils(char **argv, t_fractal *fract)
 {
+	if (!ft_strcmp(fract->name, "julia"))
+	{
+		fract->j_r = double_atoi(argv[2]);
+		fract->j_i = double_atoi(argv[3]);
+	}
 	fract_init(fract);
 	fract_drawing(fract);
 	img_utils(fract);

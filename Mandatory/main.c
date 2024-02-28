@@ -6,7 +6,7 @@
 /*   By: yboutsli <yboutsli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 17:12:49 by yboutsli          #+#    #+#             */
-/*   Updated: 2024/02/26 20:54:53 by yboutsli         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:52:39 by yboutsli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	size_t	i;
 
 	if (!*s1 || !*s2)
-		return (0);
+		return (1);
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] && s2[i])
 		i++;
@@ -67,9 +67,7 @@ void	fract_drawing(t_fractal *fract)
 	{
 		x = -1;
 		while (++x < WIDTH)
-		{
 			pixel(x, y, fract);
-		}
 	}
 	mlx_put_image_to_window(fract->connection, fract->win,
 		fract->img.img_p, 0, 0);
@@ -84,8 +82,9 @@ int	main(int argc, char **argv)
 		write(2, ERROR1, 22);
 		exit(1);
 	}
-	if (argc == 2 && (!ft_strcmp(argv[1], "mandelbrot")
-			|| (argc == 4 && !ft_strcmp(argv[1], "julia"))))
+	if ((argc == 2 && !ft_strcmp(argv[1], "mandelbrot"))
+		|| (argc == 4 && !ft_strcmp(argv[1], "julia")
+			&& valid_coords(argv[2]) && valid_coords(argv[3])))
 	{
 		fract.name = argv[1];
 		if (!ft_strcmp(fract.name, "julia"))

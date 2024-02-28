@@ -1,5 +1,5 @@
-MANDATORY = main.c fract_ol_utils1.c math_utils.c fract_ol_utils2.c
-Bonus = fract_ol_utils1_bonus.c fract_ol_utils2_bonus.c main_bonus.c math_utils_bonus.c
+MANDATORY = main.c fract_ol_utils1.c math_utils.c fract_ol_utils2.c fract_ol_utils3.c
+Bonus = fract_ol_utils1_bonus.c fract_ol_utils2_bonus.c main_bonus.c math_utils_bonus.c fract_ol_utils3_bonus.c
 M_srcs = $(addprefix Mandatory/,$(MANDATORY))
 B_srcs = $(addprefix Bonus/,$(Bonus)) 
 M_OBJ = $(M_srcs:.c=.o)

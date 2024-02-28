@@ -6,7 +6,7 @@
 /*   By: yboutsli <yboutsli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 17:12:49 by yboutsli          #+#    #+#             */
-/*   Updated: 2024/02/26 20:49:45 by yboutsli         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:56:35 by yboutsli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 	i = 0;
 	if (!*s1 || !*s2)
-		return (0);
+		return (1);
 	while (s1[i] == s2[i] && s1[i] && s2[i])
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
@@ -88,15 +88,11 @@ int	main(int argc, char **argv)
 	}
 	if ((argc == 2 && (!ft_strcmp(argv[1], "mandelbrot")
 				|| !ft_strcmp(argv[1], "tricon")))
-		|| (argc == 4 && !ft_strcmp(argv[1], "julia")))
+		|| (argc == 4 && !ft_strcmp(argv[1], "julia")
+			&& valid_coords(argv[2]) && valid_coords(argv[3])))
 	{
 		fract.name = argv[1];
-		if (!ft_strcmp(fract.name, "julia"))
-		{
-			fract.j_r = double_atoi(argv[2]);
-			fract.j_i = double_atoi(argv[3]);
-		}
-		main_utils(&fract);
+		main_utils(argv, &fract);
 	}
 	else
 	{

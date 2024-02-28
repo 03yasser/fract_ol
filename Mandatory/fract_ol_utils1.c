@@ -6,7 +6,7 @@
 /*   By: yboutsli <yboutsli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 19:34:03 by yboutsli          #+#    #+#             */
-/*   Updated: 2024/02/26 20:52:17 by yboutsli         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:49:35 by yboutsli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	key(int keycode, t_fractal *fract)
 		fract->iteration += 10;
 	else if (keycode == 78 && fract->iteration > 10)
 		fract->iteration -= 10;
-	else if (keycode == 125)
-		fract->shift_y -= (0.5 * fract->zoom);
 	else if (keycode == 126)
+		fract->shift_y -= (0.5 * fract->zoom);
+	else if (keycode == 125)
 		fract->shift_y += (0.5 * fract->zoom);
 	else if (keycode == 124)
 		fract->shift_x -= (0.5 * fract->zoom);
